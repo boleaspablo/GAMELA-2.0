@@ -1,0 +1,12 @@
+color_mar_ASUW_00: verde
+color_mar_ASUW_06: verde
+color_mar_ASUW_12: verde
+color_mar_ASUW_18: verde
+color_mar_ASW_00: verde
+color_mar_ASW_06: verde
+color_mar_ASW_12: verde
+color_mar_ASW_18: verde
+color_lluvia_ASUW_00: verde
+color_lluvia_ASUW_06: verde
+color_lluvia_ASUW_12: verde
+color_lluvia_ASUW_18: verde
