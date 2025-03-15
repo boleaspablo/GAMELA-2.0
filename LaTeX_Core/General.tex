@@ -1,0 +1,156 @@
+\documentclass[a4paper,landscape,final,8pt]{beamer} % Tamaño de papel, tamaño de letra y clase LaTeX usada. Otras clases: book, beamer...
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Permite cambiar la fuente por defecto.
+\usepackage{anysize}     % Permite modificar el tamaño de los márgenes.
+\usepackage{multicol}    % Permite escribir a doble, triple...columna.
+\usepackage{graphicx}    % Permite implementar imágenes.
+\usepackage{multirow}        % Para fusionar filas
+\usepackage{helvet}
+\usepackage{colortbl}
+\usepackage{hhline}
+
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+
+%ORDENES PARA PERSONALIZAR EL FORMATO DE TU DOCUMENTO
+\marginsize{1.5cm}{1cm}{0.5cm}{1.5cm} % MÁRGENES: Izq, Der, Sup, Inf.
+\parindent=0mm                        % Sangría por defecto.
+\parskip=3mm                          % Espacio entre párrafos por defecto.
+\renewcommand{\baselinestretch}{1}    % Interlineado.
+\definecolor{00E500}{HTML}{00E500}
+\definecolor{FFFE25}{HTML}{FFFE25}
+\definecolor{FF0000}{HTML}{FF0000}
+
+\begin{document}   % Orden que marca el inicio del artículo.
+
+\usebackgroundtemplate{%
+  \includegraphics[width=0.98\paperwidth,height=0.98\paperheight]{./Images/Background.pdf}%
+}
+
+
+\input{../Output/Matriz.tex}
+\input{../Output/prevision.tex}
+
+\begin{textblock*}{25cm}(11cm, 1cm)
+
+
+
+{\bf ~~ Matriz de Riesgo:}
+
+\resizebox{0.6\textwidth}{!}{%
+\renewcommand{\arraystretch}{1.4}         % Factor para espaciar verticalmente las celdas
+\setlength{\arrayrulewidth}{1.2pt}
+
+\begin{tabular}{|p{2.8cm}|p{3.4cm}|c|c|c|c|c|}
+\hline
+% Fila de cabecera
+\multicolumn{2}{|c|}{\cellcolor{gray!30}}
+ & \textbf{06:00}
+ & \textbf{12:00}
+ & \textbf{18:00}
+ & \textbf{00:00}
+ & \textbf{06:00} \\
+\hline
+
+% ASUW
+\multicolumn{2}{|l|}{ASUW}
+ & \cellcolor{\csname ASUWa06a1aC\endcsname}{\csname ASUWa06a1aT\endcsname}
+ & \cellcolor{\csname ASUWa12aC\endcsname}{\csname ASUWa12aT\endcsname}
+ & \cellcolor{\csname ASUWa18aC\endcsname}{\csname ASUWa18aT\endcsname}
+ & \cellcolor{\csname ASUWa00aC\endcsname}{\csname ASUWa00aT\endcsname}
+ & \cellcolor{\csname ASUWa06a2aC\endcsname}{\csname ASUWa06a2aT\endcsname} \\
+\hline
+
+% ASW
+\multicolumn{2}{|l|}{ASW}
+ & \cellcolor{\csname ASWa06a1aC\endcsname}{\csname ASWa06a1aT\endcsname}
+ & \cellcolor{\csname ASWa12aC\endcsname}{\csname ASWa12aT\endcsname}
+ & \cellcolor{\csname ASWa18aC\endcsname}{\csname ASWa18aT\endcsname}
+ & \cellcolor{\csname ASWa00aC\endcsname}{\csname ASWa00aT\endcsname}
+ & \cellcolor{ \csname ASWa06a2aC\endcsname}{\csname ASWa06a2aT\endcsname} \\
+\hline
+
+% AAW
+\multicolumn{2}{|l|}{AAW}
+ & \cellcolor{\csname AAWa06a1aC\endcsname}{\csname AAWa06a1aT\endcsname}
+ & \cellcolor{\csname AAWa12aC\endcsname}{\csname AAWa12aT\endcsname}
+ & \cellcolor{\csname AAWa18aC\endcsname}{\csname AAWa18aT\endcsname}
+ & \cellcolor{\csname AAWa00aC\endcsname}{\csname AAWa00aT\endcsname}
+ & \cellcolor{\csname AAWa06a2aC\endcsname}{\csname AAWa06a2aT\endcsname} \\
+\hline
+
+% RAS/FAS
+\multicolumn{2}{|l|}{RAS/FAS}
+ & \cellcolor{\csname RASFASa06a1aC\endcsname}{\csname RASFASa06a1aT\endcsname}
+ & \cellcolor{\csname RASFASa12aC\endcsname}{\csname RASFASa12aT\endcsname}
+ & \cellcolor{\csname RASFASa18aC\endcsname}{\csname RASFASa18aT\endcsname}
+ & \cellcolor{\csname RASFASa00aC\endcsname}{\csname RASFASa00aT\endcsname}
+ & \cellcolor{\csname RASFASa06a2aC\endcsname}{\csname RASFASa06a2aT\endcsname} \\
+\hline
+
+% AMPHIB OPS (RHIB, LAND CRAFT, SCAT, PERSONNEL, VEHICLES)
+\multirow{5}{*}{\cellcolor{gray!20}\textbf{AMPHIB OPS}}
+ & RHIB
+ & \cellcolor{\csname RHIBa06a1aC\endcsname}{\csname RHIBa06a1aT\endcsname}
+ & \cellcolor{\csname RHIBa12aC\endcsname}{\csname RHIBa12aT\endcsname}
+ & \cellcolor{\csname RHIBa18aC\endcsname}{\csname RHIBa18aT\endcsname}
+ & \cellcolor{\csname RHIBa00aC\endcsname}{\csname RHIBa00aT\endcsname}
+ & \cellcolor{\csname RHIBa06a2aC\endcsname}{\csname RHIBa06a2aT\endcsname} \\
+\hhline{|~|-|-|-|-|-|-|}  % En vez de \cline{2-7}, usamos hhline
+ & LAND CRAFT
+ & \cellcolor{\csname LNDa06a1aC\endcsname}{\csname LNDa06a1aT\endcsname}
+ & \cellcolor{\csname LNDa12aC\endcsname}{\csname LNDa12aT\endcsname}
+ & \cellcolor{\csname LNDa18aC\endcsname}{\csname LNDa18aT\endcsname}
+ & \cellcolor{\csname LNDa00aC\endcsname}{\csname LNDa00aT\endcsname}
+ & \cellcolor{\csname LNDa06a2aC\endcsname}{\csname LNDa06a2aT\endcsname} \\
+\hhline{|~|-|-|-|-|-|-|}  % En vez de \cline{2-7}, usamos hhline
+ & SCAT
+ & \cellcolor{\csname SCATa06a1aC\endcsname}{\csname SCATa06a1aT\endcsname}
+ & \cellcolor{\csname SCATa12aC\endcsname}{\csname SCATa12aT\endcsname}
+ & \cellcolor{\csname SCATa18aC\endcsname}{\csname SCATa18aT\endcsname}
+ & \cellcolor{\csname SCATa00aC\endcsname}{\csname SCATa00aT\endcsname}
+ & \cellcolor{\csname SCATa06a2aC\endcsname}{\csname SCATa06a2aT\endcsname} \\
+\hhline{|~|-|-|-|-|-|-|}  % En vez de \cline{2-7}, usamos hhline
+ & PERSONNEL
+ & \cellcolor{\csname PERSONNELa06a1aC\endcsname}{\csname PERSONNELa06a1aT\endcsname}
+ & \cellcolor{\csname PERSONNELa12aC\endcsname}{\csname PERSONNELa12aT\endcsname}
+ & \cellcolor{\csname PERSONNELa18aC\endcsname}{\csname PERSONNELa18aT\endcsname}
+ & \cellcolor{\csname PERSONNELa00aC\endcsname}{\csname PERSONNELa00aT\endcsname}
+ & \cellcolor{\csname PERSONNELa06a2aC\endcsname}{\csname PERSONNELa06a2aT\endcsname} \\
+\hhline{|~|-|-|-|-|-|-|}  % En vez de \cline{2-7}, usamos hhline
+ & VEHICLES
+ & \cellcolor{\csname VEHICLESa06a1aC\endcsname}{\csname VEHICLESa06a1aT\endcsname}
+ & \cellcolor{\csname VEHICLESa12aC\endcsname}{\csname VEHICLESa12aT\endcsname}
+ & \cellcolor{\csname VEHICLESa18aC\endcsname}{\csname VEHICLESa18aT\endcsname}
+ & \cellcolor{\csname VEHICLESa00aC\endcsname}{\csname VEHICLESa00aT\endcsname}
+ & \cellcolor{\csname VEHICLESa06a2aC\endcsname}{\csname VEHICLESa06a2aT\endcsname} \\
+\hline
+
+% AIR OPS (AV8B OPS, HELO OPS)
+\multirow{2}{*}{\cellcolor{gray!20}\textbf{AIR OPS}}
+ & AV8B OPS
+ & \cellcolor{\csname STOVLa06a1aC\endcsname}{\csname STOVLa06a1aT\endcsname}
+ & \cellcolor{\csname STOVLa12aC\endcsname}{\csname STOVLa12aT\endcsname}
+ & \cellcolor{\csname STOVLa18aC\endcsname}{\csname STOVLa18aT\endcsname}
+ & \cellcolor{\csname STOVLa00aC\endcsname}{\csname STOVLa00aT\endcsname}
+ & \cellcolor{\csname STOVLa06a2aC\endcsname}{\csname STOVLa06a2aT\endcsname} \\
+\hhline{|~|-|-|-|-|-|-|}  % En vez de \cline{2-7}, usamos hhline
+ & HELO OPS
+ & \cellcolor{\csname HELOa06a1aC\endcsname}{\csname HELOa06a1aT\endcsname}
+ & \cellcolor{\csname HELOa12aC\endcsname}{\csname HELOa12aT\endcsname}
+ & \cellcolor{\csname HELOa18aC\endcsname}{\csname HELOa18aT\endcsname}
+ & \cellcolor{\csname HELOa00aC\endcsname}{\csname HELOa00aT\endcsname}
+ & \cellcolor{\csname HELOa06a2aC\endcsname}{\csname HELOa06a2aT\endcsname} \\
+\hline
+
+\end{tabular}
+}
+\end{textblock*}
+
+
+\end{document} %Orden que finaliza el artículo, no puede haber nada escrito después de esta instrucción
