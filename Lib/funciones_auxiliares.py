@@ -484,7 +484,7 @@ def escribir_matriz(colores_mar_HELO, colores_viento_HELO, colores_visibilidad_H
 
         matriz_t[f"ASUWa{hora}aT"] = ", ".join(texto_ASUW) if texto_ASUW else ""
 
-    with open("./Output/Matriz.tex", "w", encoding="utf-8") as f:
+    with open("../Output/Matriz.tex", "w", encoding="utf-8") as f:
         for hora in horas:
             for operacion in ["HELO", "STOVL", "VEHICLES", "PERSONNEL", "SCAT", "LND", "RHIB", "RASFAS", "AAW", "ASW", "ASUW"]:
                 clave_c = f"{operacion}a{hora}aC"

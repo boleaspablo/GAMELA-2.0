@@ -106,7 +106,7 @@ def Main_automatico(debug_mode):
                     raise KeyError("La variable 'water_v' no se encontró en el dataset HYCOM.")
 
                 #Escritura de la previsión en un archivo de texto
-                with open("./Output/prevision.tex", "w", encoding="utf-8") as f:
+                with open("../Output/prevision.tex", "w", encoding="utf-8") as f:
                     f.write(rf"""{{\bf Fecha y hora del informe:}} {Dia_Ej}/{Mes_Ej}/{Ano_Ej} a las {Hora_Ej} : {Minuto_Ej}\\""")
                     f.write(f"\n")
                     f.write(rf"""Coordenadas: latitud = {lat_usuario}, longitud = {lon_usuario}\\""")
@@ -139,7 +139,7 @@ def Main_automatico(debug_mode):
                         temperatura -= 273.15  
 
                         cantidad_lluvia = (rain_gfs[i_t_gfs, i_lat_gfs, i_lon_gfs])*3600 if rain_gfs is not None else 0.0
-                        lluvia = "sí" if cantidad_lluvia > 0 else "no"
+                        lluvia = "sí" if cantidad_lluvia > 0.0 else "no"
                         techo_nubes = ceiling_gfs[i_t_gfs, i_lat_gfs, i_lon_gfs] if ceiling_gfs is not None else 1000.0
                         visibilidad = visibility_gfs[i_t_gfs, i_lat_gfs, i_lon_gfs] if visibility_gfs is not None else 20000.0
 
@@ -247,7 +247,7 @@ def Main_manual(debug_mode):
         })
 
     # Escribir los resultados en el archivo prevision.tex
-    with open("./Output/prevision.tex", "w", encoding="utf-8") as f:
+    with open("../Output/prevision.tex", "w", encoding="utf-8") as f:
         f.write(rf"""{{\bf Fecha y hora del informe:}} {Dia_Ej}/{Mes_Ej}/{Ano_Ej} a las {Hora_Ej} : {Minuto_Ej}\\""")
         f.write(f"\n")
         f.write(rf"""Coordenadas: latitud = {lat_usuario}, longitud = {lon_usuario}\\""")
