@@ -493,5 +493,38 @@ def escribir_matriz(colores_mar_HELO, colores_viento_HELO, colores_visibilidad_H
                     f.write(f"\\expandafter\\def\\csname {clave_c}\\endcsname{{{matriz[clave_c]}}}\n")
                 if clave_t in matriz_t:
                     f.write(f"\\expandafter\\def\\csname {clave_t}\\endcsname{{{matriz_t[clave_t]}}}\n")
-                #HE CAMBIADO LAS DEFINICIONES PORQUE NO RECONOCE LOS NOMBRES CON LETRAS Y NUMEROS JUNTOS
 
+def definir_area(lat_usuario, lon_usuario):
+    if 30 <= lat_usuario <= 70 and -30 <= lon_usuario <= 50:
+        area = "europe"
+    elif 66 <= lat_usuario <= 90:
+        area = "arctic"
+    elif 0 <= lat_usuario <= 30 and 30 <= lon_usuario <= 90:
+        area = "middle_east_and_india"
+    elif -50 <= lat_usuario <= -10 and 105 <= lon_usuario <= 180:
+        area = "australasia"
+    elif -10 <= lat_usuario < 30 and 80 <= lon_usuario <= 160:
+        area = "south_east_asia_and_indonesia"
+    elif 30 <= lat_usuario <= 70 and -60 <= lon_usuario < 0:
+        area = "north_atlantic"
+    elif -60 <= lat_usuario < 20 and -40 <= lon_usuario <= 100:
+        area = "south_atlantic_and_indian_ocean"
+    elif -60 <= lat_usuario <= 60 and -180 <= lon_usuario <= -70:
+        area = "pacific"
+    elif -60 <= lat_usuario <= 60 and 100 <= lon_usuario <= 180:
+        area = "pacific"
+    else:
+        area = "global"
+    
+    print(f"Área definida: {area}")
+    return area
+
+def construir_URL(area, Ano_Ej, Mes_Ej, Dia_Ej):
+    URL_06_presion = f"https://charts.ecmwf.int/products/medium-mslp-rain?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&interval=6&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
+    URL_12_presion = f"https://charts.ecmwf.int/products/medium-mslp-rain?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&interval=6&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}1200"
+    URL_visible = f"https://charts.ecmwf.int/products/medium-simulated-vis?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&layer_name=sim_image_vis_ch2&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
+    print(URL_06_presion)
+    print("\n\n")
+    print(URL_12_presion)
+    print("\n\n")
+    print(URL_visible)

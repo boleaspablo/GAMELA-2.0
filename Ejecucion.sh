@@ -1,11 +1,14 @@
 #!/usr/bin/bash
 
-PYTHON="${HOME}/anaconda3/bin/python3"
+PYTHON="$HOME/anaconda3/bin/python3"
 fecha_hora=$(date +"%Y%m%d_%H%M")
 
 cd Python_Core
 
 $PYTHON Exe.py
+
+echo "Cuando haya terminado de introducir los datos, pulse ENTER para continuar..."
+read
 
 cd ..
 cd LaTeX_Core

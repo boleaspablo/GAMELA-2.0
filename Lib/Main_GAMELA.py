@@ -36,6 +36,9 @@ def Main_automatico(debug_mode):
     lat_usuario = float(input("Introduzca la latitud (grados decimales, -90..90): "))
     lon_usuario = float(input("Introduzca la longitud (grados decimales, -180..180): "))
 
+    area = definir_area(lat_usuario, lon_usuario)
+    construir_URL(area, Ano_Ej, Mes_Ej, Dia_Ej)
+
     # Conversión para HYCOM: se usan longitudes de 0 a 360
     lon_wave = lon_usuario if lon_usuario >= 0 else 360 + lon_usuario
 
@@ -192,6 +195,7 @@ def Main_automatico(debug_mode):
                         f.write(f"\n\n")
             colores_mar_asuw, colores_mar_asw, colores_lluvia, colores_mar_aaw, colores_viento_RASFAS, colores_mar_RASFAS, colores_visibilidad_RASFAS, colores_nocturnidad_RASFAS, colores_viento_RHIB, colores_mar_RHIB, colores_visibilidad_RHIB, colores_nocturnidad_RHIB, colores_mar_LND, colores_viento_SCAT, colores_mar_SCAT, colores_visibilidad_SCAT, colores_nocturnidad_SCAT, colores_temperatura_PERSONNEL, colores_lluvia_PERSONNEL, colores_mar_PERSONNEL, colores_lluvia_VEHICLES, colores_mar_STOVL, colores_viento_STOVL, colores_visibilidad_STOVL, colores_temperatura_STOVL, colores_techo_STOVL, colores_mar_HELO, colores_viento_HELO, colores_visibilidad_HELO, colores_techo_HELO = comparar_valores(olas_list, lluvia_list, viento_list, visibilidad_list, nocturnidad_list, temperatura_list, cantidad_lluvia_list, techo_list)
             print("La previsión se ha guardado en Output/prevision.tex") 
+        
 
 #Modo manual
 def Main_manual(debug_mode):
@@ -200,6 +204,8 @@ def Main_manual(debug_mode):
     print("Información geográfica de la zona de operaciones.\n")
     lat_usuario = float(input("Introduzca la latitud (grados decimales, -90..90): "))
     lon_usuario = float(input("Introduzca la longitud (grados decimales, -180..180): "))
+
+    definir_area(lat_usuario, lon_usuario)
 
     hoy = datetime.utcnow().date()
     manana = hoy + timedelta(days=1)
