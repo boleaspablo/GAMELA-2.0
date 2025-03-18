@@ -1,4 +1,7 @@
 import numpy as np
+from playwright.sync_api import sync_playwright
+from PIL import Image
+import os
 
 #obtener índices cercanos
 def obtener_indice_cercano(valores, objetivo):
@@ -513,6 +516,8 @@ def definir_area(lat_usuario, lon_usuario):
         area = "pacific"
     elif -60 <= lat_usuario <= 60 and 100 <= lon_usuario <= 180:
         area = "pacific"
+    elif -40 <= lat_usuario <= 40 and -40 <= lon_usuario <= 60:
+        area = "africa"
     else:
         area = "global"
     
@@ -523,8 +528,53 @@ def construir_URL(area, Ano_Ej, Mes_Ej, Dia_Ej):
     URL_06_presion = f"https://charts.ecmwf.int/products/medium-mslp-rain?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&interval=6&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
     URL_12_presion = f"https://charts.ecmwf.int/products/medium-mslp-rain?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&interval=6&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}1200"
     URL_visible = f"https://charts.ecmwf.int/products/medium-simulated-vis?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&layer_name=sim_image_vis_ch2&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
-    print(URL_06_presion)
-    print("\n\n")
-    print(URL_12_presion)
-    print("\n\n")
-    print(URL_visible)
+    
+    urls = [URL_06_presion, URL_12_presion, URL_visible]
+    return urls
+
+def extraer_mapas(url, ruta_output = "img_sat.webp", espera = 5000):
+    resultado = {"webp_encontrada": False, "ruta": None}
+
+    with sync_playwright() as p:
+        navegador = p.chromium.launch(headless = True)
+        pagina = navegador.new_page()
+
+        def interceptar_petición(peticion):
+            if not resultado["webp_encontrada"]:
+                url_peticion = peticion.url
+                if url_peticion.endswith(".webp"):
+                    try:
+                        respuesta = peticion.response()
+                        if respuesta:
+                            with open(ruta_output, "wb") as archivo:
+                                archivo.write(respuesta.body())
+                            resultado["webp_encontrada"] = True
+                            resultado["ruta"] = ruta_output
+                    except Exception as e:
+                        print(f"Error: {e}")
+
+        pagina.on("request", interceptar_petición)
+
+        try:
+            pagina.goto(url, wait_until = "load")
+            pagina.wait_for_timeout(espera)
+        except Exception as e:
+            print(f"Error: {e}")
+        finally:
+            navegador.close()
+
+    return resultado["ruta"] if resultado["webp_encontrada"] else None
+
+def convertir_a_png(ruta_output):
+    ruta_output = "../Output"
+    archivos_webp = [f for f in os.listdir(ruta_output) if f.lower().endswith(".webp")]
+    for archivo in archivos_webp:
+        archivo_webp = os.path.join(ruta_output, archivo)
+        archivo_png = os.path.join(ruta_output, archivo.replace(".webp", ".png"))
+        try:
+            imagen = Image.open(archivo_webp)
+            imagen.save(archivo_png, "PNG")
+            print(f"Convertido: {archivo_webp} -> {archivo_png}")
+
+        except Exception as e:
+            print(f"Error al convertir {archivo_webp}: {e}")

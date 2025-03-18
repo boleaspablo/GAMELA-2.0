@@ -7,7 +7,7 @@ cd Python_Core
 
 $PYTHON Exe.py
 
-echo "Cuando haya terminado de introducir los datos, pulse ENTER para continuar..."
+echo "Pulse ENTER para continuar..."
 read
 
 cd ..
