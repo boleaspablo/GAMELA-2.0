@@ -110,7 +110,7 @@ def Main_automatico(debug_mode):
 
                 #Escritura de la previsión en un archivo de texto
                 with open("../Output/prevision.tex", "w", encoding="utf-8") as f:
-                    f.write(rf"""{{\bf Fecha y hora del informe:}} {Dia_Ej}/{Mes_Ej}/{Ano_Ej} a las {Hora_Ej} : {Minuto_Ej}\\""")
+                    f.write(rf"""{{\bf Fecha y hora del informe:}} {Dia_Ej}/{Mes_Ej}/{Ano_Ej} a las {Hora_Ej} : {Minuto_Ej} UTC\\""")
                     f.write(f"\n")
                     f.write(rf"""Coordenadas: latitud = {lat_usuario}, longitud = {lon_usuario}\\""")
                     f.write(f"\n")
@@ -194,7 +194,7 @@ def Main_automatico(debug_mode):
                         f.write(rf"""  Estado: {estado}""")
                         f.write(f"\n\n")
             colores_mar_asuw, colores_mar_asw, colores_lluvia, colores_mar_aaw, colores_viento_RASFAS, colores_mar_RASFAS, colores_visibilidad_RASFAS, colores_nocturnidad_RASFAS, colores_viento_RHIB, colores_mar_RHIB, colores_visibilidad_RHIB, colores_nocturnidad_RHIB, colores_mar_LND, colores_viento_SCAT, colores_mar_SCAT, colores_visibilidad_SCAT, colores_nocturnidad_SCAT, colores_temperatura_PERSONNEL, colores_lluvia_PERSONNEL, colores_mar_PERSONNEL, colores_lluvia_VEHICLES, colores_mar_STOVL, colores_viento_STOVL, colores_visibilidad_STOVL, colores_temperatura_STOVL, colores_techo_STOVL, colores_mar_HELO, colores_viento_HELO, colores_visibilidad_HELO, colores_techo_HELO = comparar_valores(olas_list, lluvia_list, viento_list, visibilidad_list, nocturnidad_list, temperatura_list, cantidad_lluvia_list, techo_list)
-            print("La previsión se ha guardado en Output/prevision.tex") 
+            print("Obteniendo mapas...") 
 
     for i, url in enumerate(urls):
         output_file = f"../Output/img_mapa_{i+1}.webp"
@@ -263,7 +263,7 @@ def Main_manual(debug_mode):
 
     # Escribir los resultados en el archivo prevision.tex
     with open("../Output/prevision.tex", "w", encoding="utf-8") as f:
-        f.write(rf"""{{\bf Fecha y hora del informe:}} {Dia_Ej}/{Mes_Ej}/{Ano_Ej} a las {Hora_Ej} : {Minuto_Ej}\\""")
+        f.write(rf"""{{\bf Fecha y hora del informe:}} {Dia_Ej}/{Mes_Ej}/{Ano_Ej} a las {Hora_Ej} : {Minuto_Ej} UTC\\""")
         f.write(f"\n")
         f.write(rf"""Coordenadas: latitud = {lat_usuario}, longitud = {lon_usuario}\\""")
         f.write(f"\n")

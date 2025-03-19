@@ -525,11 +525,11 @@ def definir_area(lat_usuario, lon_usuario):
     return area
 
 def construir_URL(area, Ano_Ej, Mes_Ej, Dia_Ej):
-    URL_06_presion = f"https://charts.ecmwf.int/products/medium-mslp-rain?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&interval=6&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
-    URL_12_presion = f"https://charts.ecmwf.int/products/medium-mslp-rain?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&interval=6&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}1200"
+
+    URL_06_presion = f"https://charts.ecmwf.int/products/medium-mslp-mean-spread?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
     URL_visible = f"https://charts.ecmwf.int/products/medium-simulated-vis?base_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0000&layer_name=sim_image_vis_ch2&projection=opencharts_{area}&valid_time={Ano_Ej}{Mes_Ej}{Dia_Ej}0600"
     
-    urls = [URL_06_presion, URL_12_presion, URL_visible]
+    urls = [URL_06_presion, URL_visible]
     return urls
 
 def extraer_mapas(url, ruta_output = "img_sat.webp", espera = 5000):
